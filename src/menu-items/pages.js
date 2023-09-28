@@ -1,38 +1,48 @@
 // assets
-import { IconKey } from '@tabler/icons';
+import { IconKey, IconCirclePlus, IconFiles, IconFile } from '@tabler/icons';
 
 // constant
 const icons = {
-  IconKey
+  IconKey,
+  IconCirclePlus,
+  IconFiles,
+  IconFile
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const pages = {
-  id: 'pages',
-  title: 'Pages',
-  caption: 'Pages Caption',
+  id: 'projects',
+  title: 'Projects',
   type: 'group',
   children: [
     {
-      id: 'authentication',
-      title: 'Authentication',
+      id: 'new-project',
+      title: 'New Project',
+      type: 'item',
+      url: '/#',
+      icon: icons.IconCirclePlus
+    },
+    {
+      id: 'projects-list',
+      title: 'Projects List',
       type: 'collapse',
-      icon: icons.IconKey,
-
+      icon: icons.IconFiles,
       children: [
         {
-          id: 'login3',
-          title: 'Login',
+          id: 'project#1',
+          title: 'First Project',
           type: 'item',
-          url: '/pages/login/login3',
+          url: '/#',
+          icon: icons.IconFile,
           target: true
         },
         {
-          id: 'register3',
-          title: 'Register',
+          id: 'project#2',
+          title: 'Second Project',
           type: 'item',
-          url: '/pages/register/register3',
+          url: '/#',
+          icon: icons.IconFile,
           target: true
         }
       ]
