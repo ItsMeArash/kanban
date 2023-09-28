@@ -25,7 +25,7 @@ const other = {
       url: '/aboutus',
       icon: icons.IconHelp,
       external: false,
-      target: true
+      target: false
     }
   ]
 };
