@@ -8,10 +8,6 @@ import AboutUs from 'views/aboutus';
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
