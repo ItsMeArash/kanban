@@ -34,19 +34,21 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
-import { useContext } from 'react';
-import AuthContext from '../../../../context/AuthProvider';
+
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import useAuth from 'hooks/useAuth';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth, setAuth } = useAuth();
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(true);
+  const navigate = useNavigate();
 
   const googleHandler = async () => {
     console.error('Login');
@@ -143,6 +145,7 @@ const FirebaseLogin = ({ ...others }) => {
               setAuth(values);
               setStatus({ success: true });
               setSubmitting(false);
+              navigate("/")
             }
           } catch (err) {
             console.error(err);

@@ -1,5 +1,7 @@
 // material-ui
 import { Typography } from '@mui/material';
+import useAuth from 'hooks/useAuth';
+import { useEffect } from 'react';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -7,6 +9,10 @@ import MainCard from 'ui-component/cards/MainCard';
 // ==============================|| SAMPLE PAGE ||============================== //
 
 const SamplePage = () => {
+  const { auth } = useAuth();
+  useEffect(() => {
+    console.log(auth);
+  }, [])
   return (
     <MainCard title="Sample Card">
       <Typography variant="body2">
