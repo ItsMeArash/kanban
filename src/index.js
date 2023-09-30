@@ -12,16 +12,19 @@ import { store } from 'store';
 // style + assets
 import 'assets/scss/style.scss';
 import config from 'config';
+import { AuthProvider } from './context/AuthProvider';
 // ==============================|| REACT DOM RENDER  ||============================== //
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-  <Provider store={store}>
-    <BrowserRouter basename={config.basename}>
-      <App />
-    </BrowserRouter>
-  </Provider>
+  <AuthProvider>
+    <Provider store={store}>
+      <BrowserRouter basename={config.basename}>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </AuthProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

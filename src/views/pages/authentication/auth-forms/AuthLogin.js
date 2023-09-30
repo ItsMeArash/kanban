@@ -34,10 +34,14 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { useContext } from 'react';
+import AuthContext from '../../../../context/AuthProvider';
+import { useEffect } from 'react';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
+  const { auth, setAuth } = useContext(AuthContext);
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
@@ -56,6 +60,10 @@ const FirebaseLogin = ({ ...others }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    console.log(auth);
+  }, [auth]);
 
   return (
     <>
@@ -131,6 +139,8 @@ const FirebaseLogin = ({ ...others }) => {
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             if (scriptedRef.current) {
+              console.log(values);
+              setAuth(values);
               setStatus({ success: true });
               setSubmitting(false);
             }
