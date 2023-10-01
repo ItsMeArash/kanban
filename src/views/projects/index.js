@@ -1,42 +1,52 @@
 // material-ui
-import { Typography } from '@mui/material';
+import * as React from 'react';
 
-const { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } = require('@mui/material');
-
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
+import { useProjects } from './useProjects';
+import Loader from 'ui-component/Loader';
+import { styled } from '@mui/material/styles';
+import ProjectsRow from './ProjectsRow';
 
-// ==============================|| SAMPLE PAGE ||============================== //
-
-const Projects = () => (
-  <MainCard title="Projects">
-    <Typography variant="body2">
-      Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut enif ad
-      minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue dolor in reprehended
-      in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non president, sunk in culpa qui officiate
-      descent molls anim id est labours.
-    </Typography>
-    <TableContainer variant="outlined">
-      <Table aria-label="demo table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert</TableCell>
-            <TableCell>Calories</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Frozen yoghurt</TableCell>
-            <TableCell>109</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Cupcake</TableCell>
-            <TableCell>305</TableCell>
-          </TableRow>
-        </TableBody>
+const Table = styled('div')({
+  border: '1px solid #d1d5db',
+  backgroundColor: '#e5e7eb',
+  borderRadius: '7px',
+  overflow: 'hidden'
+});
+const TableHeader = styled('header')({
+  display: 'flex',
+  justifyContent: 'space-between',
+  columnGap: '2.4rem',
+  alignItems: 'center',
+  backgroundColor: '#d1d5db',
+  borderBottom: '1px solid red',
+  textTransform: 'uppercase',
+  letterSpacing: '0.4px',
+  fontWeight: 600,
+  color: 'black',
+  padding: '1.6rem 2.4rem'
+});
+function Projects() {
+  const { isLoading, projects } = useProjects();
+  if (isLoading) return <Loader />;
+  return (
+    <MainCard title="Projects">
+      <Table role="row">
+        <TableHeader role="row">
+          <div></div>
+          <div>Project name</div>
+          <div>users</div>
+          <div>created date</div>
+          <div>finished date</div>
+          <div>progress</div>
+          <div></div>
+        </TableHeader>
+        {projects.map((project) => (
+          <ProjectsRow project={project} key={project.id} />
+        ))}
       </Table>
-    </TableContainer>
-  </MainCard>
-);
+    </MainCard>
+  );
+}
 
 export default Projects;
