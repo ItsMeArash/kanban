@@ -1,5 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { HiPencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import { useDeleteProject } from './useDeleteProject';
+import toast from 'react-hot-toast';
 
 const TableRow = styled('div')({
   display: 'flex',
@@ -15,7 +17,8 @@ const Project = styled('div')({
   fontFamily: 'Sono'
 });
 function ProjectsRow({ project }) {
-  const { id, name, users, createdDate, progress, finishedDate } = project;
+  const { id: projectId, name, users, createdDate, progress, finishedDate } = project;
+  const { isDeleting, deleteProject } = useDeleteProject();
 
   return (
     <>
@@ -28,7 +31,7 @@ function ProjectsRow({ project }) {
         <button>
           <HiPencilSquare />
         </button>
-        <button>
+        <button onClick={() => deleteProject(projectId)} disabled={isDeleting}>
           <HiOutlineTrash />
         </button>
       </TableRow>

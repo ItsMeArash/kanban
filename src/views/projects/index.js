@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import MainCard from 'ui-component/cards/MainCard';
-import { useProjects } from './useProjects';
+import { useProjects } from './useReadProjects';
 import Loader from 'ui-component/Loader';
 import { styled } from '@mui/material/styles';
 import ProjectsRow from './ProjectsRow';
