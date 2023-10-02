@@ -20,13 +20,13 @@ const CustomRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<MainLayout />}>
-        <Route path="/" element={<DashboardDefault />} />
-        <Route path="dashboard">
-          <Route path="default" element={<DashboardDefault />} />
-        </Route>
-        <Route path="projects" element={<Projects />} />
-        <Route path="aboutus" element={<AboutUs />} />
         <Route element={<RequiredAuth />}>
+          <Route path="/" element={<DashboardDefault />} />
+          <Route path="dashboard">
+            <Route path="default" element={<DashboardDefault />} />
+          </Route>
+          <Route path="projects" element={<Projects />} />
+          <Route path="aboutus" element={<AboutUs />} />
           <Route path="sample-page" element={<SamplePage />} />
         </Route>
       </Route>
