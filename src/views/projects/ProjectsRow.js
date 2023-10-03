@@ -17,14 +17,13 @@ const Project = styled('div')({
   fontFamily: 'Sono'
 });
 function ProjectsRow({ project }) {
-  const { id: projectId, name, users, createdDate, progress, finishedDate } = project;
+  const { id: projectId, name, users: projectusers, createdDate, progress, finishedDate } = project;
   const { isDeleting, deleteProject } = useDeleteProject();
-
   return (
     <>
       <TableRow role="row">
         <div>{name}</div>
-        <div>{users}</div>
+        <div>{projectusers}</div>
         <div>{createdDate}</div>
         <div>{finishedDate}</div>
         <div>{progress}</div>
