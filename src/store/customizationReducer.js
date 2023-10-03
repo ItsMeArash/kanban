@@ -7,6 +7,7 @@ import * as actionTypes from './actions';
 export const initialState = {
   isOpen: [], // for active default menu
   defaultId: 'default',
+  isDark: false,
   fontFamily: config.fontFamily,
   borderRadius: config.borderRadius,
   opened: true
@@ -27,6 +28,11 @@ const customizationReducer = (state = initialState, action) => {
       return {
         ...state,
         opened: action.opened
+      };
+    case actionTypes.SET_DARK:
+      return {
+        ...state,
+        isDark: action.isDark
       };
     case actionTypes.SET_FONT_FAMILY:
       return {
