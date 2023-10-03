@@ -1,10 +1,14 @@
 import { styled } from '@mui/material/styles';
+import { HiPencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import { useDeleteProject } from './useDeleteProject';
+import toast from 'react-hot-toast';
+
 const TableRow = styled('div')({
-  display: 'grid',
-  gridTemplateColumns: '0.6fr 1.8fr 2.2fr 1fr 1fr 1fr',
+  display: 'flex',
+  justifyContent: 'space-evenly',
   columnGap: '2.4rem',
   alignItems: 'center',
-  padding: '1.4rem 2.4rem'
+  padding: '1.4rem 0'
 });
 const Project = styled('div')({
   fontSize: '1.6rem',
@@ -13,7 +17,8 @@ const Project = styled('div')({
   fontFamily: 'Sono'
 });
 function ProjectsRow({ project }) {
-  const { id, name, users, createdDate, progress, finishedDate } = project;
+  const { id: projectId, name, users, createdDate, progress, finishedDate } = project;
+  const { isDeleting, deleteProject } = useDeleteProject();
 
   return (
     <>
@@ -23,6 +28,12 @@ function ProjectsRow({ project }) {
         <div>{createdDate}</div>
         <div>{finishedDate}</div>
         <div>{progress}</div>
+        <button>
+          <HiPencilSquare />
+        </button>
+        <button onClick={() => deleteProject(projectId)} disabled={isDeleting}>
+          <HiOutlineTrash />
+        </button>
       </TableRow>
     </>
   );
