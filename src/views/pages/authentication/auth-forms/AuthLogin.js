@@ -39,6 +39,7 @@ import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import useAuth from "hooks/useAuth";
 import { useReadUsers } from "hooks/useReadUsers";
+import toast from "react-hot-toast";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -84,7 +85,7 @@ const FirebaseLogin = ({ ...others }) => {
           setSubmitting(false);
           navigate(from, { replace: true });
         } else {
-          console.log('not authenticated');
+          toast.error("Email or password incorrect");
         }
       }
     } catch (err) {
@@ -160,8 +161,8 @@ const FirebaseLogin = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          email: "info@codedthemes.com",
-          password: "123456",
+          email: "",
+          password: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -169,24 +170,6 @@ const FirebaseLogin = ({ ...others }) => {
           password: Yup.string().max(255).required("Password is required")
         })}
         onSubmit={(values, { setErrors, setStatus, setSubmitting }) => onSubmit(values, { setErrors, setStatus, setSubmitting })}
-
-        // onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-        //   try {
-        //     if (scriptedRef.current) {
-        //       setAuth(values);
-        //       setStatus({ success: true });
-        //       setSubmitting(false);
-        //       navigate(from, { replace: true });
-        //     }
-        //   } catch (err) {
-        //     console.error(err);
-        //     if (scriptedRef.current) {
-        //       setStatus({ success: false });
-        //       setErrors({ submit: err.message });
-        //       setSubmitting(false);
-        //     }
-        //   }
-        // }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
