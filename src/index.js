@@ -13,18 +13,23 @@ import { store } from 'store';
 import 'assets/scss/style.scss';
 import config from 'config';
 import { AuthProvider } from './context/AuthProvider';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+const queryClient = new QueryClient();
 // ==============================|| REACT DOM RENDER  ||============================== //
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-  <AuthProvider>
-    <Provider store={store}>
-      <BrowserRouter basename={config.basename}>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </AuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <Provider store={store}>
+        <BrowserRouter basename={config.basename}>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </AuthProvider>
+  </QueryClientProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -32,10 +32,13 @@ import User1 from 'assets/images/users/user-round.svg';
 
 // assets
 import { IconLogout, IconSettings, IconUser } from '@tabler/icons';
+import useAuth from 'hooks/useAuth';
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
+  const { user } = useAuth();
+
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
@@ -150,7 +153,7 @@ const ProfileSection = () => {
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Good Morning,</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Johne Doe
+                          {`${user.name} ${user.lastname}`}
                         </Typography>
                       </Stack>
                       <Typography variant="subtitle2">Project Admin</Typography>
