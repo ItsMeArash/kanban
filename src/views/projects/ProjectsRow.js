@@ -1,20 +1,20 @@
-import { styled } from '@mui/material/styles';
-import { HiPencilSquare, HiOutlineTrash } from 'react-icons/hi2';
-import { useDeleteProject } from './useDeleteProject';
-import toast from 'react-hot-toast';
+import { styled } from "@mui/material/styles";
+import { HiPencilSquare, HiOutlineTrash } from "react-icons/hi2";
+import { useDeleteProject } from "./useDeleteProject";
+import { createUser } from "services/usersApi";
 
-const TableRow = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-evenly',
-  columnGap: '2.4rem',
-  alignItems: 'center',
-  padding: '1.4rem 0'
+const TableRow = styled("div")({
+  display: "flex",
+  justifyContent: "space-evenly",
+  columnGap: "2.4rem",
+  alignItems: "center",
+  padding: "1.4rem 0"
 });
-const Project = styled('div')({
-  fontSize: '1.6rem',
+const Project = styled("div")({
+  fontSize: "1.6rem",
   fontWeight: 600,
-  color: 'black,',
-  fontFamily: 'Sono'
+  color: "black,",
+  fontFamily: "Sono"
 });
 function ProjectsRow({ project }) {
   const { id: projectId, name, users: projectusers, createdDate, progress, finishedDate } = project;
