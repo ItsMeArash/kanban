@@ -40,6 +40,8 @@
   },
   "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
+    "avoidEscape": true,
+    "allowTemplateLiterals": true,
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "off",
@@ -68,7 +70,7 @@
       }
     ],
     "no-unused-vars": [
-    "warn",
+      "warn",
       {
         "ignoreRestSiblings": false
       }
@@ -78,7 +80,6 @@
       {
         "bracketSpacing": true,
         "printWidth": 140,
-        "singleQuote": false,
         "trailingComma": "none",
         "tabWidth": 2,
         "useTabs": false,

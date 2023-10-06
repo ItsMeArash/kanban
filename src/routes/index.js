@@ -1,20 +1,20 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import { lazy } from 'react';
+import { lazy } from "react";
 
-import Loadable from 'ui-component/Loadable';
+import Loadable from "ui-component/Loadable";
 
-import MainLayout from 'layout/MainLayout';
-import Projects from 'views/projects';
-import AboutUs from 'views/aboutus';
-import SamplePage from 'views/sample-page';
-import RequiredAuth from 'routes/RequireAuth';
-import Login from 'views/pages/authentication/authentication3/Login3';
-import Register from 'views/pages/authentication/authentication3/Register3';
-import NotFoundPage from 'views/pages/NotFoundPage';
+import MainLayout from "layout/MainLayout";
+import Projects from "views/projects";
+import AboutUs from "views/aboutus";
+import SamplePage from "views/sample-page";
+import RequiredAuth from "routes/RequireAuth";
+import Login from "views/pages/authentication/authentication3/Login3";
+import Register from "views/pages/authentication/authentication3/Register3";
+import NotFoundPage from "views/pages/NotFoundPage";
 
 const CustomRoutes = () => {
-  const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
+  const DashboardDefault = Loadable(lazy(() => import("../views/dashboard/Default")));
 
   return (
     <Routes>
