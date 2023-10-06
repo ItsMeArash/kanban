@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
@@ -20,19 +20,19 @@ import {
   Popper,
   Stack,
   Typography
-} from '@mui/material';
+} from "@mui/material";
 
 // third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
-import Transitions from 'ui-component/extended/Transitions';
-import User1 from 'assets/images/users/user-round.svg';
+import MainCard from "ui-component/cards/MainCard";
+import Transitions from "ui-component/extended/Transitions";
+import User1 from "assets/images/users/user-round.svg";
 
 // assets
-import { IconLogout, IconSettings, IconUser } from '@tabler/icons';
-import useAuth from 'hooks/useAuth';
+import { IconLogout, IconSettings, IconUser } from "@tabler/icons";
+import useAuth from "hooks/useAuth";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -50,7 +50,7 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
+    console.log("Logout");
   };
 
   const handleClose = (event) => {
@@ -60,11 +60,11 @@ const ProfileSection = () => {
     setOpen(false);
   };
 
-  const handleListItemClick = (event, index, route = '') => {
+  const handleListItemClick = (event, index, route = "") => {
     setSelectedIndex(index);
     handleClose(event);
 
-    if (route && route !== '') {
+    if (route && route !== "") {
       navigate(route);
     }
   };
@@ -85,21 +85,21 @@ const ProfileSection = () => {
     <>
       <Chip
         sx={{
-          height: '48px',
-          alignItems: 'center',
-          borderRadius: '27px',
-          transition: 'all .2s ease-in-out',
+          height: "48px",
+          alignItems: "center",
+          borderRadius: "27px",
+          transition: "all .2s ease-in-out",
           borderColor: theme.palette.primary.light,
           backgroundColor: theme.palette.primary.light,
           '&[aria-controls="menu-list-grow"], &:hover': {
             borderColor: theme.palette.primary.main,
             background: `${theme.palette.primary.main}!important`,
             color: theme.palette.primary.light,
-            '& svg': {
+            "& svg": {
               stroke: theme.palette.primary.light
             }
           },
-          '& .MuiChip-label': {
+          "& .MuiChip-label": {
             lineHeight: 0
           }
         }}
@@ -108,11 +108,11 @@ const ProfileSection = () => {
             src={User1}
             sx={{
               ...theme.typography.mediumAvatar,
-              margin: '8px 0 8px 8px !important',
-              cursor: 'pointer'
+              margin: "8px 0 8px 8px !important",
+              cursor: "pointer"
             }}
             ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
+            aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"
             color="inherit"
           />
@@ -120,7 +120,7 @@ const ProfileSection = () => {
         label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
         variant="outlined"
         ref={anchorRef}
-        aria-controls={open ? 'menu-list-grow' : undefined}
+        aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
         color="primary"
@@ -135,7 +135,7 @@ const ProfileSection = () => {
         popperOptions={{
           modifiers: [
             {
-              name: 'offset',
+              name: "offset",
               options: {
                 offset: [0, 14]
               }
@@ -160,20 +160,20 @@ const ProfileSection = () => {
                     </Stack>
                     <Divider />
                   </Box>
-                  <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
+                  <PerfectScrollbar style={{ height: "100%", maxHeight: "calc(100vh - 250px)", overflowX: "hidden" }}>
                     <Box sx={{ p: 2 }}>
                       <List
                         component="nav"
                         sx={{
-                          width: '100%',
+                          width: "100%",
                           maxWidth: 350,
                           minWidth: 300,
                           backgroundColor: theme.palette.background.paper,
-                          borderRadius: '10px',
-                          [theme.breakpoints.down('md')]: {
-                            minWidth: '100%'
+                          borderRadius: "10px",
+                          [theme.breakpoints.down("md")]: {
+                            minWidth: "100%"
                           },
-                          '& .MuiListItemButton-root': {
+                          "& .MuiListItemButton-root": {
                             mt: 0.5
                           }
                         }}
@@ -181,7 +181,7 @@ const ProfileSection = () => {
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
                           selected={selectedIndex === 0}
-                          onClick={(event) => handleListItemClick(event, 0, '#')}
+                          onClick={(event) => handleListItemClick(event, 0, "#")}
                         >
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="1.3rem" />
@@ -191,7 +191,7 @@ const ProfileSection = () => {
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
                           selected={selectedIndex === 1}
-                          onClick={(event) => handleListItemClick(event, 1, '#')}
+                          onClick={(event) => handleListItemClick(event, 1, "#")}
                         >
                           <ListItemIcon>
                             <IconUser stroke={1.5} size="1.3rem" />

@@ -1,25 +1,25 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
 // routing
-import Routes from 'routes';
+import Routes from "routes";
 
 // defaultTheme
-import themes from 'themes';
+import themes from "themes";
 
 // project imports
-import NavigationScroll from 'layout/NavigationScroll';
-import { Toaster } from 'react-hot-toast';
+import NavigationScroll from "layout/NavigationScroll";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const customization = useSelector((state) => state.customization);
 
   const toasterProps = {
-    position: 'top-center',
+    position: "top-center",
     gutter: 12,
-    containerStyle: { margin: '8px' },
+    containerStyle: { margin: "8px" },
     toastOptions: {
       success: {
         duration: 3000
@@ -28,11 +28,11 @@ const App = () => {
         duration: 5000
       },
       style: {
-        fontSize: '16px',
-        maxWidth: '500px',
-        padding: '16px 24px',
-        backgroundColor: '#f3f4f6',
-        color: 'black'
+        fontSize: "16px",
+        maxWidth: "500px",
+        padding: "16px 24px",
+        backgroundColor: "#f3f4f6",
+        color: "black"
       }
     }
   };

@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import {
   Box,
   Button,
@@ -20,28 +20,28 @@ import {
   TextField,
   Typography,
   useMediaQuery
-} from '@mui/material';
+} from "@mui/material";
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from "yup";
+import { Formik } from "formik";
 
 // project imports
-import useScriptRef from 'hooks/useScriptRef';
-import Google from 'assets/images/icons/social-google.svg';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import { strengthColor, strengthIndicator } from 'utils/password-strength';
+import useScriptRef from "hooks/useScriptRef";
+import Google from "assets/images/icons/social-google.svg";
+import AnimateButton from "ui-component/extended/AnimateButton";
+import { strengthColor, strengthIndicator } from "utils/password-strength";
 
 // assets
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
 const FirebaseRegister = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const customization = useSelector((state) => state.customization);
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -50,7 +50,7 @@ const FirebaseRegister = ({ ...others }) => {
   const [level, setLevel] = useState();
 
   const googleHandler = async () => {
-    console.error('Register');
+    console.error("Register");
   };
 
   const handleClickShowPassword = () => {
@@ -68,7 +68,7 @@ const FirebaseRegister = ({ ...others }) => {
   };
 
   useEffect(() => {
-    changePassword('123456');
+    changePassword("123456");
   }, []);
 
   return (
@@ -82,7 +82,7 @@ const FirebaseRegister = ({ ...others }) => {
               onClick={googleHandler}
               size="large"
               sx={{
-                color: 'grey.700',
+                color: "grey.700",
                 backgroundColor: theme.palette.grey[50],
                 borderColor: theme.palette.grey[100]
               }}
@@ -95,12 +95,12 @@ const FirebaseRegister = ({ ...others }) => {
           </AnimateButton>
         </Grid>
         <Grid item xs={12}>
-          <Box sx={{ alignItems: 'center', display: 'flex' }}>
+          <Box sx={{ alignItems: "center", display: "flex" }}>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
             <Button
               variant="outlined"
               sx={{
-                cursor: 'unset',
+                cursor: "unset",
                 m: 2,
                 py: 0.5,
                 px: 7,
@@ -126,13 +126,13 @@ const FirebaseRegister = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          email: '',
-          password: '',
+          email: "",
+          password: "",
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
+          password: Yup.string().max(255).required("Password is required")
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -198,7 +198,7 @@ const FirebaseRegister = ({ ...others }) => {
               <InputLabel htmlFor="outlined-adornment-password-register">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-register"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 value={values.password}
                 name="password"
                 label="Password"
@@ -234,7 +234,7 @@ const FirebaseRegister = ({ ...others }) => {
                 <Box sx={{ mb: 2 }}>
                   <Grid container spacing={2} alignItems="center">
                     <Grid item>
-                      <Box style={{ backgroundColor: level?.color }} sx={{ width: 85, height: 8, borderRadius: '7px' }} />
+                      <Box style={{ backgroundColor: level?.color }} sx={{ width: 85, height: 8, borderRadius: "7px" }} />
                     </Grid>
                     <Grid item>
                       <Typography variant="subtitle1" fontSize="0.75rem">

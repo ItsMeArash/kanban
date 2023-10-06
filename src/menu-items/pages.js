@@ -1,5 +1,5 @@
 // assets
-import { IconKey, IconCirclePlus, IconFiles, IconFile } from '@tabler/icons';
+import { IconKey, IconCirclePlus, IconFiles, IconFile } from "@tabler/icons";
 
 // constant
 const icons = {
@@ -12,36 +12,36 @@ const icons = {
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const pages = {
-  id: 'projects',
-  title: 'Projects',
-  type: 'group',
+  id: "projects",
+  title: "Projects",
+  type: "group",
   children: [
     {
-      id: 'new-project',
-      title: 'New Project',
-      type: 'item',
-      url: '/projects',
+      id: "new-project",
+      title: "New Project",
+      type: "item",
+      url: "/projects",
       icon: icons.IconCirclePlus
     },
     {
-      id: 'projects-list',
-      title: 'Projects List',
-      type: 'collapse',
+      id: "projects-list",
+      title: "Projects List",
+      type: "collapse",
       icon: icons.IconFiles,
       children: [
         {
-          id: 'project#1',
-          title: 'First Project',
-          type: 'item',
-          url: '/#',
+          id: "project#1",
+          title: "First Project",
+          type: "item",
+          url: "/#",
           icon: icons.IconFile,
           target: true
         },
         {
-          id: 'project#2',
-          title: 'Second Project',
-          type: 'item',
-          url: '/#',
+          id: "project#2",
+          title: "Second Project",
+          type: "item",
+          url: "/#",
           icon: icons.IconFile,
           target: true
         }

@@ -1,6 +1,6 @@
-import dashboard from './dashboard';
-import pages from './pages';
-import other from './other';
+import dashboard from "./dashboard";
+import pages from "./pages";
+import other from "./other";
 
 // ==============================|| MENU ITEMS ||============================== //
 

@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { getProjects } from 'services/projectsApi';
+import { useQuery } from "@tanstack/react-query";
+import { getProjects } from "services/projectsApi";
 
 export function useProjects() {
   const {
@@ -7,7 +7,7 @@ export function useProjects() {
     data: projects,
     error
   } = useQuery({
-    queryKey: ['projects'],
+    queryKey: ["projects"],
     queryFn: getProjects
   });
 

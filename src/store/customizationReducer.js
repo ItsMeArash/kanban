@@ -1,12 +1,12 @@
 // project imports
-import config from 'config';
+import config from "config";
 
 // action - state management
-import * as actionTypes from './actions';
+import * as actionTypes from "./actions";
 
 export const initialState = {
   isOpen: [], // for active default menu
-  defaultId: 'default',
+  defaultId: "default",
   isDark: false,
   fontFamily: config.fontFamily,
   borderRadius: config.borderRadius,

@@ -1,24 +1,24 @@
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 
 // third party
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 // project imports
-import * as serviceWorker from 'serviceWorker';
-import App from 'App';
-import { store } from 'store';
+import * as serviceWorker from "serviceWorker";
+import App from "App";
+import { store } from "store";
 
 // style + assets
-import 'assets/scss/style.scss';
-import config from 'config';
-import { AuthProvider } from './context/AuthProvider';
+import "assets/scss/style.scss";
+import config from "config";
+import { AuthProvider } from "./context/AuthProvider";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 // ==============================|| REACT DOM RENDER  ||============================== //
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <QueryClientProvider client={queryClient}>
