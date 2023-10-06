@@ -40,7 +40,7 @@
   },
   "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
-    "avoidEscape": true,
+    "avoidEscape": 0,
     "allowTemplateLiterals": true,
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",

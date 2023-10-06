@@ -12,6 +12,7 @@ import RequiredAuth from "routes/RequireAuth";
 import Login from "views/pages/authentication/authentication3/Login3";
 import Register from "views/pages/authentication/authentication3/Register3";
 import NotFoundPage from "views/pages/NotFoundPage";
+import AccountSettings from "views/pages/AccountSettings";
 
 const CustomRoutes = () => {
   const DashboardDefault = Loadable(lazy(() => import("../views/dashboard/Default")));
@@ -22,6 +23,7 @@ const CustomRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<MainLayout />}>
         <Route element={<RequiredAuth />}>
+          <Route path="settings" element={<AccountSettings />} />
           <Route path="/" element={<DashboardDefault />} />
           <Route path="dashboard">
             <Route path="default" element={<DashboardDefault />} />

@@ -35,16 +35,20 @@ import { strengthColor, strengthIndicator } from "utils/password-strength";
 // assets
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useReadUsers } from "hooks/useReadUsers";
+import { createUser } from "services/usersApi";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
 const FirebaseRegister = ({ ...others }) => {
+  const { users } = useReadUsers();
+
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const customization = useSelector((state) => state.customization);
   const [showPassword, setShowPassword] = useState(false);
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
 
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState();
@@ -65,6 +69,37 @@ const FirebaseRegister = ({ ...others }) => {
     const temp = strengthIndicator(value);
     setStrength(temp);
     setLevel(strengthColor(temp));
+  };
+
+  const isRegistered = (values) => {
+    return users.some((user) => user.email === values.email);
+  };
+
+  const onSubmit = async (values, { setErrors, setStatus, setSubmitting }) => {
+    try {
+      if (scriptedRef.current) {
+        if (isRegistered(values)) {
+          console.log("is registered");
+        } else {
+          console.log(values);
+          console.log("new user registration");
+          const { data } = createUser({
+            name: values.firstName,
+            lastname: values.lastName,
+            email: values.email,
+            password: values.password
+          });
+          console.log(data)
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      if (scriptedRef.current) {
+        setStatus({ success: false });
+        setErrors({ submit: err.message });
+        setSubmitting(false);
+      }
+    }
   };
 
   useEffect(() => {
@@ -126,29 +161,19 @@ const FirebaseRegister = ({ ...others }) => {
 
       <Formik
         initialValues={{
+          firstName: "",
+          lastName: "",
           email: "",
           password: "",
-          submit: null
+          submit: null,
+          checked: false
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
-          password: Yup.string().max(255).required("Password is required")
+          password: Yup.string().max(255).required("Password is required"),
+          checked: Yup.boolean().oneOf([true], "You must agree to the Terms & Conditions")
         })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
-        }}
+        onSubmit={(values, { setErrors, setStatus, setSubmitting }) => onSubmit(values, { setErrors, setStatus, setSubmitting })}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
@@ -158,9 +183,10 @@ const FirebaseRegister = ({ ...others }) => {
                   fullWidth
                   label="First Name"
                   margin="normal"
-                  name="fname"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  name="firstName"
                   type="text"
-                  defaultValue=""
                   sx={{ ...theme.typography.customInput }}
                 />
               </Grid>
@@ -169,9 +195,10 @@ const FirebaseRegister = ({ ...others }) => {
                   fullWidth
                   label="Last Name"
                   margin="normal"
-                  name="lname"
+                  onChange={handleChange}
+                  value={values.lastName}
+                  name="lastName"
                   type="text"
-                  defaultValue=""
                   sx={{ ...theme.typography.customInput }}
                 />
               </Grid>
@@ -249,9 +276,7 @@ const FirebaseRegister = ({ ...others }) => {
             <Grid container alignItems="center" justifyContent="space-between">
               <Grid item>
                 <FormControlLabel
-                  control={
-                    <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                  }
+                  control={<Checkbox checked={values.checked} onChange={(event) => handleChange(event)} name="checked" color="primary" />}
                   label={
                     <Typography variant="subtitle1">
                       Agree with &nbsp;
@@ -261,6 +286,7 @@ const FirebaseRegister = ({ ...others }) => {
                     </Typography>
                   }
                 />
+                {touched.checked && errors.checked && <FormHelperText error>{errors.checked}</FormHelperText>}
               </Grid>
             </Grid>
             {errors.submit && (
