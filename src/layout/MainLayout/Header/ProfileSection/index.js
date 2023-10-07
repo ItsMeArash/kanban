@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // material-ui
@@ -37,7 +37,7 @@ import useAuth from "hooks/useAuth";
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
 
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
@@ -51,6 +51,8 @@ const ProfileSection = () => {
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     console.log("Logout");
+    setUser({});
+    navigate("/login");
   };
 
   const handleClose = (event) => {
@@ -59,7 +61,7 @@ const ProfileSection = () => {
     }
     setOpen(false);
   };
-
+  ////////////////////////////////////////////////////////////////
   const handleListItemClick = (event, index, route = "") => {
     setSelectedIndex(index);
     handleClose(event);
@@ -181,7 +183,7 @@ const ProfileSection = () => {
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
                           selected={selectedIndex === 0}
-                          onClick={(event) => handleListItemClick(event, 0, "#")}
+                          onClick={(event) => handleListItemClick(event, 0, "/settings")}
                         >
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="1.3rem" />
