@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // material-ui
@@ -37,11 +37,14 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useReadUsers } from "hooks/useReadUsers";
 import { createUser } from "services/usersApi";
+import toast from "react-hot-toast";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
 const FirebaseRegister = ({ ...others }) => {
   const { users } = useReadUsers();
+
+  const navigate = useNavigate();
 
   const theme = useTheme();
   const scriptedRef = useScriptRef();
@@ -86,10 +89,12 @@ const FirebaseRegister = ({ ...others }) => {
           const { data } = createUser({
             name: values.firstName,
             lastname: values.lastName,
-            email: values.email,
+            email: values.email.toLowerCase(),
             password: values.password
           });
-          console.log(data)
+          console.log(data);
+          toast.success("Registered successfully!");
+          navigate("/login");
         }
       }
     } catch (err) {

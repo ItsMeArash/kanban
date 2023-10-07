@@ -71,7 +71,7 @@ const FirebaseLogin = ({ ...others }) => {
   };
 
   const isAuthenticated = (values) => {
-    return users.find((user) => user.email === values.email && user.password === values.password);
+    return users.find((user) => user.email === values.email.toLowerCase() && user.password === values.password);
   };
 
   const onSubmit = async (values, { setErrors, setStatus, setSubmitting }) => {
