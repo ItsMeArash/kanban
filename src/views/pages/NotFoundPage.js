@@ -26,7 +26,7 @@ const NotFoundPage = () => {
 
         <PageNotFoundIllustration sx={{ height: 260, my: { xs: 5, sm: 10 } }} />
 
-        <Button component={Link} to="/" size="large" variant="contained">
+        <Button component={Link} to="/" size="large" variant="contained" color="secondary">
           Back to Home
         </Button>
       </ContentStyle>
