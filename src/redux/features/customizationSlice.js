@@ -26,7 +26,6 @@ export const customizationSlice = createSlice({
       state.fontFamily = action.payload;
     },
     setBorderRadius: (state, action) => {
-      console.log(action.payload);
       state.borderRadius = action.payload;
     }
   }

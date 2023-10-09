@@ -47,13 +47,15 @@ const Customization = () => {
   // state - border radius
   const [borderRadiusState, setBorderRadiusState] = useState(customization.borderRadius);
   const handleBorderRadius = (event, newValue) => {
+    //console.log(event.target.value, "target value");
+    //console.log(newValue, "new value");
     setBorderRadiusState(newValue);
     dispatch(setBorderRadius(newValue));
   };
 
   useEffect(() => {
-    console.log(borderRadiusState);
-    console.log(customization.borderRadius);
+    console.log("state: ", borderRadiusState);
+    console.log("store: ", customization.borderRadius);
   }, [borderRadiusState]);
 
   let initialFont;
