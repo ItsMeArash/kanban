@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 // project imports
 import * as serviceWorker from "serviceWorker";
 import App from "App";
-import { store } from "store";
 
 // style + assets
 import "assets/scss/style.scss";
@@ -15,6 +14,7 @@ import config from "config";
 import { AuthProvider } from "./context/AuthProvider";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { store } from "redux/app/store";
 const queryClient = new QueryClient();
 // ==============================|| REACT DOM RENDER  ||============================== //
 

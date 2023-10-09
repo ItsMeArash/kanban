@@ -40,9 +40,6 @@ import useAuth from "hooks/useAuth";
 import { useReadUsers } from "hooks/useReadUsers";
 import toast from "react-hot-toast";
 
-import jwt from "jsonwebtoken";
-
-
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
@@ -73,7 +70,9 @@ const FirebaseLogin = ({ ...others }) => {
   };
 
   const isAuthenticated = (values) => {
-    return users.find((user) => user.email === values.email.toLowerCase() && user.password === values.password);
+    if (users) {
+      return users.find((user) => user.email === values.email.toLowerCase() && user.password === values.password);
+    } else toast.error("Maybe network error! :(");
   };
 
   const onSubmit = async (values, { setErrors, setStatus, setSubmitting }) => {
@@ -83,9 +82,6 @@ const FirebaseLogin = ({ ...others }) => {
         if (userData) {
           console.log(userData);
           setUser(userData);
-          const userJWTPayload = userData;
-          // const token = jwt.sign(userJWTPayload, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
-          console.log(token);
           setStatus({ success: true });
           setSubmitting(false);
           navigate(from, { replace: true });

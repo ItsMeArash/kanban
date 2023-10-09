@@ -24,8 +24,8 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // project imports
 import SubCard from "ui-component/cards/SubCard";
 import AnimateButton from "ui-component/extended/AnimateButton";
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from "store/actions";
-import { gridSpacing } from "store/constant";
+import { gridSpacing } from "utils/constant";
+import { setBorderRadius, setFontFamily } from "redux/features/customizationSlice";
 
 // concat 'px'
 function valueText(value) {
@@ -44,16 +44,17 @@ const Customization = () => {
   const handleToggle = () => {
     setOpen(!open);
   };
-
   // state - border radius
-  const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
+  const [borderRadiusState, setBorderRadiusState] = useState(customization.borderRadius);
   const handleBorderRadius = (event, newValue) => {
-    setBorderRadius(newValue);
+    setBorderRadiusState(newValue);
+    dispatch(setBorderRadius(newValue));
   };
 
   useEffect(() => {
-    dispatch({ type: SET_BORDER_RADIUS, borderRadius });
-  }, [dispatch, borderRadius]);
+    console.log(borderRadiusState);
+    console.log(customization.borderRadius);
+  }, [borderRadiusState]);
 
   let initialFont;
   switch (customization.fontFamily) {
@@ -70,7 +71,7 @@ const Customization = () => {
   }
 
   // state - font family
-  const [fontFamily, setFontFamily] = useState(initialFont);
+  const [fontFamily, setFontFamilyy] = useState(initialFont);
   useEffect(() => {
     let newFont;
     switch (fontFamily) {
@@ -85,7 +86,7 @@ const Customization = () => {
         newFont = `'Roboto', sans-serif`;
         break;
     }
-    dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
+    dispatch(setFontFamily(newFont));
   }, [dispatch, fontFamily]);
 
   return (
@@ -137,7 +138,7 @@ const Customization = () => {
                   <RadioGroup
                     aria-label="font-family"
                     value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
+                    onChange={(e) => setFontFamilyy(e.target.value)}
                     name="row-radio-buttons-group"
                   >
                     <FormControlLabel
@@ -183,7 +184,7 @@ const Customization = () => {
                   <Grid item xs>
                     <Slider
                       size="small"
-                      value={borderRadius}
+                      value={borderRadiusState}
                       onChange={handleBorderRadius}
                       getAriaValueText={valueText}
                       valueLabelDisplay="on"
