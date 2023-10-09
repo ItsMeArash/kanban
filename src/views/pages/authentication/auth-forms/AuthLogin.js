@@ -35,11 +35,13 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import Google from "assets/images/icons/social-google.svg";
 
-import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import useAuth from "hooks/useAuth";
 import { useReadUsers } from "hooks/useReadUsers";
 import toast from "react-hot-toast";
+
+import jwt from "jsonwebtoken";
+
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -75,12 +77,15 @@ const FirebaseLogin = ({ ...others }) => {
   };
 
   const onSubmit = async (values, { setErrors, setStatus, setSubmitting }) => {
-    const user = isAuthenticated(values);
+    const userData = isAuthenticated(values);
     try {
       if (scriptedRef.current) {
-        if (user) {
-          console.log(user);
-          setUser(user);
+        if (userData) {
+          console.log(userData);
+          setUser(userData);
+          const userJWTPayload = userData;
+          // const token = jwt.sign(userJWTPayload, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
+          console.log(token);
           setStatus({ success: true });
           setSubmitting(false);
           navigate(from, { replace: true });
