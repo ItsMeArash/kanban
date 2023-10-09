@@ -47,16 +47,9 @@ const Customization = () => {
   // state - border radius
   const [borderRadiusState, setBorderRadiusState] = useState(customization.borderRadius);
   const handleBorderRadius = (event, newValue) => {
-    //console.log(event.target.value, "target value");
-    //console.log(newValue, "new value");
     setBorderRadiusState(newValue);
     dispatch(setBorderRadius(newValue));
   };
-
-  useEffect(() => {
-    console.log("state: ", borderRadiusState);
-    console.log("store: ", customization.borderRadius);
-  }, [borderRadiusState]);
 
   let initialFont;
   switch (customization.fontFamily) {
@@ -90,6 +83,14 @@ const Customization = () => {
     }
     dispatch(setFontFamily(newFont));
   }, [dispatch, fontFamily]);
+
+  // state - dark mode
+  const [isDarkState, setDarkState] = useState(localStorage.getItem("isDark") ?? false);
+  const darkHandler = (event) => {
+    const state = event.target.value === "true" ? true : false;
+    setDarkState(state);
+    localStorage.setItem("isDark", state);
+  };
 
   return (
     <>
@@ -133,6 +134,33 @@ const Customization = () => {
       >
         <PerfectScrollbar component="div">
           <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
+            <Grid item xs={12}>
+              {/* Dark mode */}
+              <SubCard title="Theme">
+                <FormControl>
+                  <RadioGroup aria-label="theme" value={isDarkState} onChange={(event) => darkHandler(event)} name="dark-mode-radio-group">
+                    <FormControlLabel
+                      value={false}
+                      control={<Radio />}
+                      label="Light"
+                      sx={{
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": { color: theme.palette.grey[900] }
+                      }}
+                    />
+                    <FormControlLabel
+                      value={true}
+                      control={<Radio />}
+                      label="Dark"
+                      sx={{
+                        "& .MuiSvgIcon-root": { fontSize: 28 },
+                        "& .MuiFormControlLabel-label": { color: theme.palette.grey[900] }
+                      }}
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </SubCard>
+            </Grid>
             <Grid item xs={12}>
               {/* font family */}
               <SubCard title="Font Family">

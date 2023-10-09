@@ -6,7 +6,6 @@ export const customizationSlice = createSlice({
   initialState: {
     isOpen: [],
     defaultId: "default",
-    isDark: false,
     fontFamily: config.fontFamily,
     borderRadius: config.borderRadius,
     opened: true
@@ -19,9 +18,6 @@ export const customizationSlice = createSlice({
     setMenu: (state, action) => {
       state.opened = action.payload;
     },
-    setDark: (state, action) => {
-      state.isDark = action.payload;
-    },
     setFontFamily: (state, action) => {
       state.fontFamily = action.payload;
     },
@@ -31,6 +27,6 @@ export const customizationSlice = createSlice({
   }
 });
 
-export const { menuOpen, setMenu, setDark, setFontFamily, setBorderRadius } = customizationSlice.actions;
+export const { menuOpen, setMenu, setFontFamily, setBorderRadius } = customizationSlice.actions;
 
 export default customizationSlice.reducer;
