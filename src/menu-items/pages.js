@@ -20,7 +20,7 @@ const pages = {
       id: "new-project",
       title: "New Project",
       type: "item",
-      url: "/projects",
+      url: "/addproject",
       icon: icons.IconCirclePlus
     },
     {

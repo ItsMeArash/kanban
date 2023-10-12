@@ -13,6 +13,7 @@ import Login from "views/pages/authentication/authentication3/Login3";
 import Register from "views/pages/authentication/authentication3/Register3";
 import NotFoundPage from "views/pages/NotFoundPage";
 import AccountSettings from "views/pages/AccountSettings";
+import AddProject from "views/projects/AddProject";
 
 const CustomRoutes = () => {
   const DashboardDefault = Loadable(lazy(() => import("../views/dashboard/Default")));
@@ -29,6 +30,7 @@ const CustomRoutes = () => {
             <Route path="default" element={<DashboardDefault />} />
           </Route>
           <Route path="projects" element={<Projects />} />
+          <Route path="addproject" element={<AddProject />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="sample-page" element={<SamplePage />} />
         </Route>
