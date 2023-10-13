@@ -51,7 +51,7 @@ const AddProject = () => {
             <Formik
                 initialValues={{
                     title: "",
-                    creatorName: `${user.name} ${user.lastname}`,
+                    creatorName: user.id,
                     contributors: [user.id],
                     createDate: getCurrentDate(),
                     deadline: null,
@@ -80,7 +80,7 @@ const AddProject = () => {
                                 disabled
                                 id="project-creator-name"
                                 type="text"
-                                value={values.creatorName}
+                                value={`${user.id}. ${user.name} ${user.lastname}`}
                                 label="Project creator name"
                                 inputProps={{}}
                             />
