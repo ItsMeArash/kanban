@@ -9,8 +9,10 @@ import AnimateButton from "ui-component/extended/AnimateButton";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useTheme } from "@mui/material/styles";
 import { useReadUsers } from "hooks/useReadUsers";
+import { useCreateProject } from "./useCreateProject";
 
 const AddProject = () => {
+    const { isCreating, createProject } = useCreateProject();
     const { user } = useAuth();
     const [personName, setPersonName] = useState([`${user.id}. ${user.name} ${user.lastname}`]);
     const theme = useTheme();
@@ -32,6 +34,7 @@ const AddProject = () => {
 
     const onSubmit = (values, { setErrors, setStatus, setSubmitting }) => {
         console.log(values);
+        createProject({ ...values });
     };
 
     const changeHandler = (event, setFieldValue) => {
@@ -143,13 +146,13 @@ const AddProject = () => {
                             <AnimateButton>
                                 <Button
                                     disableElevation
-                                    disabled={isSubmitting}
+                                    disabled={isCreating}
                                     size="large"
                                     type="submit"
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Add Project
+                                    {isCreating ? "Creating..." : "Add project"}
                                 </Button>
                             </AnimateButton>
                         </Box>
